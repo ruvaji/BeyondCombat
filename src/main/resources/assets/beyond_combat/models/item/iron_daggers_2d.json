@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/handheld",
   "textures": {
-    "layer0": "beyondcombat:item/iron_longsword"
+    "layer0": "beyond_combat:item/iron_daggers"
   }
 }

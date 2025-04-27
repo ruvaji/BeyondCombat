@@ -2,8 +2,8 @@
 	"credit": "Made by Ruvaji",
 	"texture_size": [32, 32],
 	"textures": {
-		"0": "beyondcombat:item/iron_daggers_3d",
-		"particle": "beyondcombat:item/iron_daggers_3d"
+		"0": "beyond_combat:item/iron_daggers_3d",
+		"particle": "beyond_combat:item/iron_daggers_3d"
 	},
 	"elements": [
 		{

@@ -1,7 +1,7 @@
-package net.beyondDev.beyondcombat.item.custom;
+package net.beyondDev.beyond_combat.common.items.custom;
 
-import net.beyondDev.beyondcombat.item.ModItems;
-import net.beyondDev.beyondcombat.sound.ModSounds;
+import net.beyondDev.beyond_combat.core.registry.BCItems;
+import net.beyondDev.beyond_combat.core.registry.BCSounds;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -18,18 +18,18 @@ public class DaggersItem extends Item {
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pHand) {
-        ItemStack itemStackDaggers = pPlayer.getItemInHand(pHand);
-        ItemStack itemStackDaggerMainHand = new ItemStack(ModItems.IRON_DAGGER.get());
-        ItemStack itemStackDaggerOffHand = new ItemStack(ModItems.IRON_DAGGER.get());
+        if (!pLevel.isClientSide) {
+            ItemStack itemStackDaggers = pPlayer.getMainHandItem();
+            ItemStack itemStackOffHand = pPlayer.getOffhandItem();
+            ItemStack itemStackDaggerMainHand = new ItemStack(BCItems.IRON_DAGGER.get());
+            ItemStack itemStackDaggerOffHand = new ItemStack(BCItems.IRON_DAGGER.get());
 
-        if(!pLevel.isClientSide) {
-            if(Screen.hasShiftDown()) {
+            if (Screen.hasShiftDown() && itemStackOffHand.isEmpty()) {
                 itemStackDaggers.grow(-1);
                 pPlayer.setItemInHand(InteractionHand.MAIN_HAND, itemStackDaggerMainHand);
                 pPlayer.setItemInHand(InteractionHand.OFF_HAND, itemStackDaggerOffHand);
 
-                pLevel.playSeededSound(null, pPlayer.position().x, pPlayer.position().y, pPlayer.position().z,
-                        ModSounds.DAGGERS_KEEP.get(), SoundSource.PLAYERS,2f, 1f, 0);
+                pLevel.playSeededSound(null, pPlayer.position().x, pPlayer.position().y, pPlayer.position().z, BCSounds.DAGGERS_KEEP.get(), SoundSource.PLAYERS, 2f, 1f, 0);
             }
         }
 
